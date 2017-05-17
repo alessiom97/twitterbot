@@ -1,0 +1,47 @@
+function setup() {
+  createCanvas(600, 6000);
+  fill(0);
+
+  loadStrings("./nouns.txt", doText);
+  loadStrings("./adjectives.txt", doText2);
+}
+
+function doText(data1) {
+  for (var i=0; i<data1.length; i++) {
+    text("Nouns list:", 5, 20);
+    text(data1[i]+ ": " + (new_count(data1[i])), 5, 20*i+50);
+  }
+}
+
+function doText2(data2) {
+  for (var j=0; j<data2.length; j++) {
+    text("Adjectives list:", 100, 20);
+    text(data2[j]+ ": " + (new_count(data2[j])), 100, 20*j+50);
+  }
+}
+
+function new_count(word) {
+  word = word.toLowerCase();
+  if(word.length <= 3) { return 1; }
+  word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
+  word = word.replace(/^y/, '');
+  return word.match(/[aeiouy]{1,2}/g).length;
+}
+
+function splitBySyllable(data1) {
+  var wordsBySylCount = {};
+  for (var i = 0, len = data1.length; i < len; i++) {
+    var slblCount = new_count(data1[i]);
+    if (wordsBySylCount[slblCount] === undefined) {
+      wordsBySylCount[slblCount] = [data1[i]];
+    } else {
+      wordsBySylCount[slblCount].push(data1[i]);
+    }
+  }
+  return wordsBySylCount;
+}
+
+function writePoem(){
+  var nounsBySyllableCount = splitBySyllable(data1);
+  console.log(splitBySyllable(data1));
+}

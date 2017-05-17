@@ -1,0 +1,11 @@
+{
+  "name": "(twitterbot)",
+  "version": "1.0.0",
+  "description": "\"twitter bot for code 2\"",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alessio Monti",
+  "license": "ISC"
+}
